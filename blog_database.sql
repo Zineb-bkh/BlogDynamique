@@ -81,10 +81,10 @@ ON DUPLICATE KEY UPDATE username=username;
 -- ============================================
 INSERT INTO posts (title, slug, content, image, status) VALUES
 ('Bienvenue sur votre nouveau blog', 'bienvenue-sur-votre-nouveau-blog', 
-'Ceci est le premier article de votre blog. Vous pouvez le modifier ou le supprimer depuis le panneau d''administration. Profitez de toutes les fonctionnalit\u00e9s offertes par ce syst\u00e8me de blog moderne!', 
+'Ceci est le premier article de votre blog. Vous pouvez le modifier ou le supprimer depuis le panneau d''administration. Profitez de toutes les fonctionnalités offertes par ce système de blog moderne!', 
 'default.jpg', 'published'),
-('Guide pour d\u00e9marrer', 'guide-pour-demarrer', 
-'D\u00e9couvrez comment cr\u00e9er, modifier et g\u00e9rer vos articles facilement. Utilisez le panneau d''administration pour un contr\u00f4le total sur votre contenu.', 
+('Guide pour démarrer', 'guide-pour-demarrer', 
+'Découvrez comment crer, modifier et gérer vos articles facilement. Utilisez le panneau d''administration pour un contrôle total sur votre contenu.', 
 'default.jpg', 'published')
 ON DUPLICATE KEY UPDATE title=title;
 

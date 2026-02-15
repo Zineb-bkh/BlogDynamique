@@ -38,7 +38,7 @@ try {
     $_SESSION['success'] = 'Article supprim\u00e9 avec succ\u00e8s !';
     
 } catch (PDOException $e) {
-    $_SESSION['error'] = 'Erreur lors de la suppression de l'article : ' . $e->getMessage();
+    $_SESSION['error'] = "Erreur lors de la suppression de l'article : " . $e->getMessage();
 }
 
 // Rediriger vers le dashboard

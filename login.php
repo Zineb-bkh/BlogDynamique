@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="login-header text-center mb-4">
                 <i class="fas fa-user-shield fa-3x mb-3"></i>
                 <h2>Connexion Admin</h2>
-                <p class="text-muted">Acc\u00e9dez \u00e0 votre panneau d'administration</p>
+                <p class="text-muted">Accédez à votre panneau d'administration</p>
             </div>
             
             <?php if ($error): ?>

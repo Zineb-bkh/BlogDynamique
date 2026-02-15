@@ -7,7 +7,7 @@
 require_once '../includes/auth.php';
 require_once '../includes/db.php';
 
-$page_title = 'G\u00e9rer les Commentaires - Admin';
+$page_title = 'Gérer les Commentaires - Admin';
 
 // Actions sur les commentaires
 $action = isset($_GET['action']) ? $_GET['action'] : '';
@@ -19,17 +19,17 @@ if ($action && $comment_id) {
             case 'approve':
                 $stmt = $pdo->prepare("UPDATE comments SET status = 'approved' WHERE id = :id");
                 $stmt->execute(['id' => $comment_id]);
-                $_SESSION['success'] = 'Commentaire approuv\u00e9 !';
+                $_SESSION['success'] = 'Commentaire approuvé !';
                 break;
             case 'reject':
                 $stmt = $pdo->prepare("UPDATE comments SET status = 'pending' WHERE id = :id");
                 $stmt->execute(['id' => $comment_id]);
-                $_SESSION['success'] = 'Commentaire rejet\u00e9 !';
+                $_SESSION['success'] = 'Commentaire rejeté !';
                 break;
             case 'delete':
                 $stmt = $pdo->prepare("DELETE FROM comments WHERE id = :id");
                 $stmt->execute(['id' => $comment_id]);
-                $_SESSION['success'] = 'Commentaire supprim\u00e9 !';
+                $_SESSION['success'] = 'Commentaire supprimé !';
                 break;
         }
     } catch (PDOException $e) {
@@ -143,7 +143,7 @@ $total_pending = $pdo->query("SELECT COUNT(*) FROM comments WHERE status = 'pend
                         <i class="fas fa-eye me-1"></i> Voir le site
                     </a>
                     <a href="../logout.php" class="btn btn-danger btn-sm">
-                        <i class="fas fa-sign-out-alt me-1"></i> D\u00e9connexion
+                        <i class="fas fa-sign-out-alt me-1"></i> Se déconnecter
                     </a>
                 </div>
             </div>
@@ -171,7 +171,7 @@ $total_pending = $pdo->query("SELECT COUNT(*) FROM comments WHERE status = 'pend
                     </div>
                     <div class="stat-info">
                         <h3><?= $total_approved ?></h3>
-                        <p>Approuv\u00e9s</p>
+                        <p>Approuvés</p>
                     </div>
                 </div>
             </div>
@@ -214,7 +214,7 @@ $total_pending = $pdo->query("SELECT COUNT(*) FROM comments WHERE status = 'pend
                             <li class="nav-item">
                                 <a class="nav-link <?= $status_filter === 'approved' ? 'active' : '' ?>" 
                                    href="?status=approved">
-                                    Approuv\u00e9s (<?= $total_approved ?>)
+                                    Approuvés (<?= $total_approved ?>)
                                 </a>
                             </li>
                         </ul>
@@ -245,7 +245,7 @@ $total_pending = $pdo->query("SELECT COUNT(*) FROM comments WHERE status = 'pend
                                                         <?= htmlspecialchars($comment['name']) ?>
                                                     </h5>
                                                     <span class="badge <?= $comment['status'] === 'approved' ? 'bg-success-custom' : 'bg-warning-custom' ?>">
-                                                        <?= $comment['status'] === 'approved' ? 'Approuv\u00e9' : 'En attente' ?>
+                                                        <?= $comment['status'] === 'approved' ? 'Approuvé' : 'En attente' ?>
                                                     </span>
                                                 </div>
                                                 
@@ -286,7 +286,7 @@ $total_pending = $pdo->query("SELECT COUNT(*) FROM comments WHERE status = 'pend
                                                     
                                                     <a href="?action=delete&id=<?= $comment['id'] ?>" 
                                                        class="btn btn-danger w-100"
-                                                       onclick="return confirmDelete('\u00cates-vous s\u00fbr de vouloir supprimer ce commentaire ?')">
+                                                       onclick="return confirmDelete('Êtes-vous sûr de vouloir supprimer ce commentaire ?')">
                                                         <i class="fas fa-trash me-2"></i>Supprimer
                                                     </a>
                                                 </div>

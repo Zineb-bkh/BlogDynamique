@@ -57,11 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $filename = $_FILES['image']['name'];
             $file_ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
             
-            // V\u00e9rifier l'extension
+            // Vérifier l'extension
             if (!in_array($file_ext, $allowed)) {
-                $error = 'Extension de fichier non autoris\u00e9e. Extensions accept\u00e9es: jpg, jpeg, png, gif, webp';
+                $error = 'Extension de fichier non autorisée. Extensions acceptées: jpg, jpeg, png, gif, webp';
             } else {
-                // V\u00e9rifier la taille (max 5MB)
+                // Vérifier la taille (max 5MB)
                 if ($_FILES['image']['size'] > 5242880) {
                     $error = 'Le fichier est trop volumineux (max 5MB)';
                 } else {
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if (move_uploaded_file($_FILES['image']['tmp_name'], $upload_path)) {
                         $image = $new_filename;
                     } else {
-                        $error = 'Erreur lors du t\u00e9l\u00e9chargement de l'image.';
+                        $error = "Erreur lors du téléchargement de l'image.";
                     }
                 }
             }
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (!$error) {
             try {
-                // V\u00e9rifier si le slug existe d\u00e9j\u00e0 (et n'est pas le m\u00eame article)
+                // Vérifier si le slug existe déjà (et n'est pas le même article)
                 $checkStmt = $pdo->prepare("SELECT id FROM posts WHERE slug = :slug AND id != :id");
                 $checkStmt->execute(['slug' => $slug, 'id' => $id]);
                 
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $slug .= '-' . time();
                 }
                 
-                // Mettre \u00e0 jour l'article
+                // Mettre à jour l'article
                 $stmt = $pdo->prepare("
                     UPDATE posts 
                     SET title = :title, slug = :slug, content = :content, image = :image, status = :status, updated_at = NOW()
@@ -113,15 +113,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'id' => $id
                 ]);
                 
-                $success = 'Article modifi\u00e9 avec succ\u00e8s !';
+                $success = 'Article modifié avec succès !';
                 
-                // R\u00e9cup\u00e9rer l'article mis \u00e0 jour
+                // Récupérer l'article mis à jour
                 $stmt = $pdo->prepare("SELECT * FROM posts WHERE id = :id");
                 $stmt->execute(['id' => $id]);
                 $post = $stmt->fetch();
                 
             } catch (PDOException $e) {
-                $error = 'Erreur lors de la modification de l'article : ' . $e->getMessage();
+                $error = "Erreur lors de la modification de l'article : " . $e->getMessage();
             }
         }
     }
@@ -180,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <i class="fas fa-eye me-1"></i> Voir le site
                     </a>
                     <a href="../logout.php" class="btn btn-danger btn-sm">
-                        <i class="fas fa-sign-out-alt me-1"></i> D\u00e9connexion
+                        <i class="fas fa-sign-out-alt me-1"></i> Se déconnecter
                     </a>
                 </div>
             </div>
@@ -231,7 +231,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                        id="image" 
                                        name="image" 
                                        accept="image/jpeg,image/png,image/gif,image/webp">
-                                <div class="form-text">Formats accept\u00e9s: JPG, PNG, GIF, WEBP (max 5MB)</div>
+                                <div class="form-text">Formats acceptés: JPG, PNG, GIF, WEBP (max 5MB)</div>
                                 
                                 <!-- Image actuelle -->
                                 <?php if ($post['image'] && $post['image'] !== 'default.jpg'): ?>
@@ -256,8 +256,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <?php endif; ?>
                                 
                                 <div id="imagePreview" class="mt-3" style="display: none;">
-                                    <label class="form-label">Aper\u00e7u de la nouvelle image:</label>
-                                    <img id="preview" src="" alt="Aper\u00e7u" class="img-fluid rounded" style="max-height: 300px;">
+                                    <label class="form-label">Aperçu de la nouvelle image:</label>
+                                    <img id="preview" src="" alt="Aperçu" class="img-fluid rounded" style="max-height: 300px;">
                                 </div>
                             </div>
                             
@@ -305,7 +305,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </a>
                                 <a href="delete_post.php?id=<?= $post['id'] ?>" 
                                    class="btn btn-danger btn-lg ms-auto"
-                                   onclick="return confirmDelete('\u00cates-vous s\u00fbr de vouloir supprimer cet article ? Cette action est irr\u00e9versible.')">
+                                   onclick="return confirmDelete('Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.')">
                                     <i class="fas fa-trash me-2"></i>Supprimer
                                 </a>
                             </div>

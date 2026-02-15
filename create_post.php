@@ -7,7 +7,7 @@
 require_once '../includes/auth.php';
 require_once '../includes/db.php';
 
-$page_title = 'Cr\u00e9er un Article - Admin';
+$page_title = 'Créer un Article - Admin';
 
 $error = '';
 $success = '';
@@ -31,27 +31,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $filename = $_FILES['image']['name'];
             $file_ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
             
-            // V\u00e9rifier l'extension
+            // Vérifier l'extension
             if (!in_array($file_ext, $allowed)) {
-                $error = 'Extension de fichier non autoris\u00e9e. Extensions accept\u00e9es: jpg, jpeg, png, gif, webp';
+                $error = 'Extension de fichier non autorisée. Extensions acceptées: jpg, jpeg, png, gif, webp';
             } else {
-                // V\u00e9rifier la taille (max 5MB)
+                // Vérifier la taille (max 5MB)
                 if ($_FILES['image']['size'] > 5242880) {
                     $error = 'Le fichier est trop volumineux (max 5MB)';
                 } else {
-                    // Cr\u00e9er le dossier uploads s'il n'existe pas
+                    // Créer le dossier uploads s'il n'existe pas
                     if (!file_exists('../uploads')) {
                         mkdir('../uploads', 0777, true);
                     }
                     
-                    // G\u00e9n\u00e9rer un nom de fichier unique
+                    // Générer un nom de fichier unique
                     $new_filename = uniqid('post_', true) . '.' . $file_ext;
                     $upload_path = '../uploads/' . $new_filename;
                     
                     if (move_uploaded_file($_FILES['image']['tmp_name'], $upload_path)) {
                         $image = $new_filename;
                     } else {
-                        $error = 'Erreur lors du t\u00e9l\u00e9chargement de l'image.';
+                        $error = "Erreur lors du téléchargement de l'image.";
                     }
                 }
             }
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (!$error) {
             try {
-                // V\u00e9rifier si le slug existe d\u00e9j\u00e0
+                // Vérifier si le slug existe déjà
                 $checkStmt = $pdo->prepare("SELECT id FROM posts WHERE slug = :slug");
                 $checkStmt->execute(['slug' => $slug]);
                 
@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $slug .= '-' . time();
                 }
                 
-                // Ins\u00e9rer l'article
+                // Insérer l'article
                 $stmt = $pdo->prepare("
                     INSERT INTO posts (title, slug, content, image, status) 
                     VALUES (:title, :slug, :content, :image, :status)
@@ -80,13 +80,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'status' => $status
                 ]);
                 
-                $success = 'Article cr\u00e9\u00e9 avec succ\u00e8s !';
+                $success = 'Article créé avec succès !';
                 
-                // Rediriger apr\u00e8s 2 secondes
+                // Rediriger après 2 secondes
                 header('refresh:2;url=dashboard.php');
                 
             } catch (PDOException $e) {
-                $error = 'Erreur lors de la cr\u00e9ation de l'article : ' . $e->getMessage();
+                $error = "Erreur lors de la création de l'article : " . $e->getMessage();
             }
         }
     }
@@ -145,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <i class="fas fa-eye me-1"></i> Voir le site
                     </a>
                     <a href="../logout.php" class="btn btn-danger btn-sm">
-                        <i class="fas fa-sign-out-alt me-1"></i> D\u00e9connexion
+                        <i class="fas fa-sign-out-alt me-1"></i> Se déconnecter
                     </a>
                 </div>
             </div>
@@ -158,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="card">
                     <div class="card-header">
                         <h4 class="mb-0">
-                            <i class="fas fa-plus-circle me-2"></i>Cr\u00e9er un nouvel article
+                            <i class="fas fa-plus-circle me-2"></i>Créer un nouvel article
                         </h4>
                     </div>
                     <div class="card-body">
@@ -193,10 +193,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                        id="image" 
                                        name="image" 
                                        accept="image/jpeg,image/png,image/gif,image/webp">
-                                <div class="form-text">Formats accept\u00e9s: JPG, PNG, GIF, WEBP (max 5MB)</div>
+                                <div class="form-text">Formats acceptés: JPG, PNG, GIF, WEBP (max 5MB)</div>
                                 
                                 <div id="imagePreview" class="mt-3" style="display: none;">
-                                    <img id="preview" src="" alt="Aper\u00e7u" class="img-fluid rounded" style="max-height: 300px;">
+                                    <img id="preview" src="" alt="Aperçu" class="img-fluid rounded" style="max-height: 300px;">
                                 </div>
                             </div>
                             
@@ -236,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             
                             <div class="d-flex gap-2">
                                 <button type="submit" class="btn btn-primary btn-lg">
-                                    <i class="fas fa-save me-2"></i>Cr\u00e9er l'article
+                                    <i class="fas fa-save me-2"></i>Créer l'article
                                 </button>
                                 <a href="dashboard.php" class="btn btn-secondary btn-lg">
                                     <i class="fas fa-times me-2"></i>Annuler

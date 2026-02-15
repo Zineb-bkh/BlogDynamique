@@ -94,7 +94,7 @@ function showAlert(message, type = 'success') {
 // ============================================
 // CONFIRMATION SUPPRESSION
 // ============================================
-function confirmDelete(message = '\u00cates-vous s\u00fbr de vouloir supprimer cet \u00e9l\u00e9ment ?') {
+function confirmDelete(message = 'Êtes-vous sûr de vouloir supprimer cet élément ?') {
     return confirm(message);
 }
 
@@ -199,7 +199,7 @@ function performSearch(searchTerm) {
             const message = document.createElement('div');
             message.id = 'no-results';
             message.className = 'alert alert-info text-center fade-in';
-            message.innerHTML = '<i class="fas fa-search me-2"></i>Aucun article trouv\u00e9 pour cette recherche.';
+            message.innerHTML = '<i class="fas fa-search me-2"></i>Aucun article trouvé pour cette recherche.';
             document.querySelector('.search-box').after(message);
         }
     } else if (noResultsMsg) {
@@ -245,7 +245,7 @@ function setupCharacterCounter(textareaId, counterId, maxLength) {
     if (textarea && counter) {
         textarea.addEventListener('input', function() {
             const remaining = maxLength - this.value.length;
-            counter.textContent = `${remaining} caract\u00e8res restants`;
+            counter.textContent = `${remaining} caractères restants`;
             
             if (remaining < 50) {
                 counter.classList.add('text-danger');
@@ -317,7 +317,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ============================================
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
-        showAlert('Copi\u00e9 dans le presse-papier !', 'success');
+        showAlert('Copié dans le presse-papier !', 'success');
     }).catch(() => {
         showAlert('Erreur lors de la copie', 'danger');
     });
@@ -335,5 +335,5 @@ document.addEventListener('DOMContentLoaded', function() {
     const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
     const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
     
-    console.log('\ud83d\ude80 Blog Dynamique - JavaScript charg\u00e9 avec succ\u00e8s !');
+    console.log('Blog Dynamique - JavaScript chargé avec succès !');
 });

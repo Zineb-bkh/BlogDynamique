@@ -66,10 +66,10 @@ require_once __DIR__ . '/includes/header.php';
         <div class="row align-items-center">
             <div class="col-lg-6 text-center text-lg-start">
                 <h1 class="display-4 fw-bold mb-3">Bienvenue sur notre Blog</h1>
-                <p class="lead mb-4">D\u00e9couvrez nos derniers articles et partagez vos id\u00e9es avec notre communaut\u00e9.</p>
+                <p class="lead mb-4">Découvrez nos derniers articles et partagez vos idées avec notre communauté.</p>
                 <?php if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true): ?>
                     <a href="admin/dashboard.php" class="btn btn-primary btn-lg">
-                        <i class="fas fa-plus me-2"></i>Cr\u00e9er un article
+                        <i class="fas fa-plus me-2"></i>Créer un article
                     </a>
                 <?php endif; ?>
             </div>
@@ -90,7 +90,7 @@ require_once __DIR__ . '/includes/header.php';
                         <input type="text" 
                                class="form-control" 
                                name="search" 
-                               placeholder="\ud83d\udd0d Rechercher un article..." 
+                               placeholder="Rechercher un article..." 
                                value="<?= htmlspecialchars($search) ?>"
                                autocomplete="off">
                         <button class="btn btn-primary" type="submit">
@@ -109,7 +109,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="col-12 mb-4">
             <h2 class="section-title">
                 <i class="fas fa-newspaper me-2"></i>
-                <?= $search ? 'R\u00e9sultats de recherche' : 'Derniers articles' ?>
+                <?= $search ? 'Résultats de recherche' : 'Derniers articles' ?>
                 <?php if ($search): ?>
                     <span class="badge bg-info-custom ms-2"><?= $total_articles ?></span>
                 <?php endif; ?>

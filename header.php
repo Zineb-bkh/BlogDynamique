@@ -13,7 +13,7 @@ $dark_mode = isset($_COOKIE['dark_mode']) && $_COOKIE['dark_mode'] === 'true';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $page_title ?? 'Blog Moderne' ?></title>
-    <meta name="description" content="<?= $page_description ?? 'Blog moderne avec syst\u00e8me de commentaires et espace admin' ?>">
+    <meta name="description" content="<?= $page_description ?? 'Blog moderne avec système de commentaires et espace admin' ?>">
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">

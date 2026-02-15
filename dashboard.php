@@ -101,7 +101,7 @@ function formatDate($datetime) {
                     <i class="fas fa-eye me-1"></i> Voir le site
                 </a>
                 <a href="../logout.php" class="btn btn-danger btn-sm">
-                    <i class="fas fa-sign-out-alt me-1"></i> Déconnexion
+                    <i class="fas fa-sign-out-alt me-1"></i> Se déconnecter
                 </a>
             </div>
         </div>
