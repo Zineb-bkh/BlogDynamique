@@ -1,10 +1,10 @@
 <?php
-$servername = "127.0.0.1";
-$username = "root";
+$host = "sql312.infinityfree.com";  // host exact donné
+$user = "if0_41167157"; 
 $password = "45Xju.YIO@xYy"; // même que MySQL
-$dbname = "blog_system";
+$dbname = "if0_41167157_blog_system";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($host, $user, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Connexion échouée: " . $conn->connect_error);
